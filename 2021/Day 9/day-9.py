@@ -4,6 +4,10 @@ test = [[2,1,9,9,9,4,3,2,1,0],
 [8,7,6,7,8,9,6,7,8,9],
 [9,8,9,9,9,6,5,6,7,8]]
 
+import matplotlib.pyplot as plt
+import numpy as np
+import cmocean
+
 def basin_points(data, x, y):
     points = [[x, y]]
     base = data[y][x]
@@ -32,7 +36,7 @@ def basin_points(data, x, y):
     return [list(x) for x in set(tuple(pt) for pt in points)]
     
 with open('input.txt', 'r') as f:
-    data = [[(int(point)) for point in line if point is not "\n"] for line in f.readlines()]
+    data = [[(int(point)) for point in line if point != "\n"] for line in f.readlines()]
 
 ipt = data
 
@@ -73,3 +77,12 @@ for i, x in enumerate(vect):
 
 basin_sizes.sort()
 print(basin_sizes[-3] * basin_sizes[-2] * basin_sizes[-1])
+
+x,y = zip(*pos)
+
+fig = plt.figure()
+X = np.arange(min(set(x))-0.5, max(set(x))+0.5, 1)
+Y = np.arange(min(set(y))-0.5, max(set(y))+0.5, 1)
+ax = fig.add_subplot()
+ax.pcolormesh(X, Y, np.array(ipt), cmap=cmocean.cm.deep)
+plt.show()
