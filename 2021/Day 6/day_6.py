@@ -1,5 +1,3 @@
-test_input = [3,4,3,1,2]
-
 with open('input.txt', 'r') as f:
     data = [x.replace('\n', '') for x in f.readlines()]
 data = [x.split(',') for x in data][0]

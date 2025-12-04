@@ -1,5 +1,3 @@
-test_data = [16,1,2,0,4,2,7,1,2,14]
-
 with open('input.txt', 'r') as f:
     data = [int(x) for x in f.readlines()[0].split(',')]
 
